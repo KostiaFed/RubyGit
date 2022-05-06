@@ -1,0 +1,42 @@
+<h1><%= @post.title %></h1>
+<p><%= @post.body %></p>
+<hr>
+<div style="display: flex;">
+<%= link_to "Редагувати", edit_post_path(@post), :class => "btn btn-danger marginio" %>
+<%= button_to "Видалити", post_path(@post), method: :delete, :class => "btn btn-danger marginio", :type => "button" %>
+</div>
+<hr>
+<% @iter = 0 %>
+<h2>Коментарі</h2>
+
+<% @post.comments.each do |comment| %>
+<% @iter = @iter + 1 %>
+<% end %>
+
+<% if @iter > 0 %>
+<%= @iter.to_s + " коментарів" %>
+<% else %>
+<%= "Коментарі відсутні" %>
+<% end %>
+
+<% @post.comments.each do |comment| %>
+<div>
+<p><b><%= comment.username %></b><%= ":" %>
+  <%= comment.body %></p>
+</div>
+<% end %>
+<hr>
+<h3>Додати коментар</h3>
+<%= form_for([@post, @post.comments.build]) do |f| %>
+<p>
+  Ім'я<br>
+<%= f.text_field(:username, {:class => 'form-control'}) %>
+</p>
+<p>
+  Текст<br>
+<%= f.text_area(:body, {:class => 'form-control'}) %>
+</p>
+<p>
+<%= f.submit("Прокоментувати", {:class => 'btn btn-danger'}) %>
+</p>
+<% end %>
