@@ -1,20 +1,17 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
+<p class = "topic"><b>Тема: </b><%= Theme.all[@post.theme_id - 1].name %></p>
+
 <hr>
 <div style="display: flex;">
 <%= link_to "Редагувати", edit_post_path(@post), :class => "btn btn-danger marginio" %>
 <%= button_to "Видалити", post_path(@post), method: :delete, :class => "btn btn-danger marginio", :type => "button" %>
 </div>
 <hr>
-<% @iter = 0 %>
 <h2>Коментарі</h2>
 
-<% @post.comments.each do |comment| %>
-<% @iter = @iter + 1 %>
-<% end %>
-
-<% if @iter > 0 %>
-<%= @iter.to_s + " коментарів" %>
+<% if @post.comments.count > 0 %>
+<%= @post.comments.count.to_s + " коментарів" %>
 <% else %>
 <%= "Коментарі відсутні" %>
 <% end %>

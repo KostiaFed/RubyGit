@@ -31,6 +31,9 @@
     .marginio {
           margin: 2px
           }
+          .topic {
+                color: #dc3545
+                }
     </style>
   </head>
 
@@ -45,7 +48,8 @@
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
               <li><span class="px-2 text-white"><%= link_to "Головна", home_path, :class => "mme" %></span></li>
               <li><span class="px-2 text-white"><%= link_to "Створити пост", new_post_path, :class => "mme" %></span></li>
-              <li><span class="px-2 text-white"><%= link_to "Про мене", about_path, :class => "mme" %></span></li>
+              <li><span class="px-2 text-white"><%= link_to "Створити тему", new_theme_path, :class => "mme" %></span></li>
+              <li><span class="px-2 text-white"><%= link_to "Історія", about_path, :class => "mme" %></span></li>
 
             </ul>
 

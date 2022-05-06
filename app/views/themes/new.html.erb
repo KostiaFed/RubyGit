@@ -1,0 +1,15 @@
+<h3>Створити тему</h3>
+<%= form_for :theme, url: themes_path, data: { turbo: false } do |f| %>
+  <% if @theme.errors.any? %>
+    <% @theme.errors.full_messages.each do |msg| %>
+      <div class = "alert alert-danger"><%= msg %></div>
+    <% end %>
+  <% end %>
+  <p>
+    Назва<br>
+  <%= f.text_field(:name, {:class => 'form-control'}) %>
+  </p>
+  <p>
+  <%= f.submit("Створити", {:class => 'btn btn-danger'}) %>
+  </p>
+<% end %>

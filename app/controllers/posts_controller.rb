@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  http_basic_authenticate_with name: "Admin", password "Admin", except: [:index, :show]
+  #http_basic_authenticate_with name: "Admin", password "Admin", except: [:index, :show]
   def index
 @post = Post.all
   end
@@ -15,6 +15,9 @@ class PostsController < ApplicationController
   def destroy
       @post = Post.find(params[:id])
 
+      @post.comments.each do |comment|
+      comment.destroy
+    end
       @post.destroy
       redirect_to posts_path
   end
@@ -43,6 +46,6 @@ end
   end
 
   private def post_params
-    params.require(:post).permit(:title, :body)
+    params.require(:post).permit(:title, :body, :theme_id)
   end
 end
